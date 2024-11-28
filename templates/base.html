@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="de-DE">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+    
+    {% if title %}
+        <title>{{ title }} </title>
+    {% else %}
+        <title>Sascha Schmittinger </title>    
+    {% endif %}
+</head>
+<body>
+    
+    <script src="{% static "js/flowbite.min.js" %}"></script>
+</body>
+</html>
