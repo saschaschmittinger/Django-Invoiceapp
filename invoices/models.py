@@ -19,13 +19,19 @@ class Invoice(models.Model):
     zahlungsziel = models.DateField()
     erstellt = models.DateTimeField(auto_now_add=True)
     abgeschlossen = models.BooleanField(default=False)
-    tag = models.ManyToManyField(Tag, blank=True)
+    tags = models.ManyToManyField(Tag, blank=True)
 
     def __str__(self):
         return f"Rechnungsnummer: {self.rechnungsnummer}"
 
+    def get_tags(self):
+        return self.tags.all()
+
     def get_positions(self):
-        pass
+        return self.position_set.all()
 
     def get_total_amount(self):
-        pass
+        total: int = 0
+        qs = self.get_positions()
+        for pos in qs:
+            total += pos.betrag

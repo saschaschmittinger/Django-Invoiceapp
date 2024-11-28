@@ -1,10 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.forms import ValidationError
+
+from profiles.utils import generate_konto_nummer
 
 
 class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    account_nummer = models.CharField(max_length=26, blank=True)
+    kontonummer = models.CharField(max_length=26, blank=True)
     firmen_name = models.CharField(max_length=250)
     firmen_info = models.TextField()
     erstellt = models.DateTimeField(auto_now_add=True)
@@ -12,3 +15,13 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+    def save(self, *args, **kwargs):
+        if self.kontonummer == "":
+            self.kontonummer = generate_konto_nummer()
+        super().save(*args, **kwargs)
+
+
+#    def clean(self):
+#       if len(self.kontonummer) != 26:
+#          raise ValidationError("die Kontonummer muss 26 Stellen haben")

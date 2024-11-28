@@ -8,7 +8,7 @@ class ProfileAdmin(admin.ModelAdmin):
     list_filter: list = ["firmen_name", "erstellt", "user"]
     fields: list = [
         "user",
-        "account_nummer",
+        "kontonummer",
         "firmen_name",
         "firmen_info",
         "erstellt",

@@ -19,7 +19,7 @@ class InvoiceAdmin(admin.ModelAdmin):
         "zahlungsziel",
         "erstellt",
         "abgeschlossen",
-        "tag",
+        "tags",
     ]
     readonly_fields: list = ["erstellt"]
 
