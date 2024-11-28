@@ -3,6 +3,13 @@ from profiles.models import Profile
 from receivers.models import Receiver
 
 
+class Tag(models.Model):
+    name = models.CharField(max_length=250)
+
+    def __str__(self):
+        return self.name
+
+
 class Invoice(models.Model):
     profil = models.ForeignKey(Profile, on_delete=models.CASCADE)
     empfänger = models.ForeignKey(Receiver, on_delete=models.CASCADE)
@@ -12,9 +19,10 @@ class Invoice(models.Model):
     zahlungsziel = models.DateField()
     erstellt = models.DateTimeField(auto_now_add=True)
     abgeschlossen = models.BooleanField(default=False)
+    tag = models.ManyToManyField(Tag, blank=True)
 
     def __str__(self):
-        return f"Rechnungsnummer: {self.rechnungsnummer}, pk: {self.pk}"
+        return f"Rechnungsnummer: {self.rechnungsnummer}"
 
     def get_positions(self):
         pass

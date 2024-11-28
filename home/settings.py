@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     "profiles",
     "receivers",
     "invoices",
+    "positions",
 ]
 
 MIDDLEWARE = [

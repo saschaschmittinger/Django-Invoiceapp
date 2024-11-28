@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Invoice
+from .models import Invoice, Tag
 
 
 @admin.register(Invoice)
@@ -21,3 +21,8 @@ class InvoiceAdmin(admin.ModelAdmin):
         "abgeschlossen",
     ]
     readonly_fields: list = ["erstellt"]
+
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    fields: list = ["name"]
