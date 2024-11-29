@@ -1,17 +1,16 @@
 from django.contrib import admin
+from import_export import resources
+from import_export.admin import ExportActionMixin
 from .models import Profile
 
 
+class ProfileRecources(resources.ModelResource):
+    class Meta:
+        model = Profile
+        fields = {"id", "user"}
+
+
 @admin.register(Profile)
-class ProfileAdmin(admin.ModelAdmin):
-    list_display: list = ["firmen_name", "user", "erstellt", "update"]
-    list_filter: list = ["firmen_name", "erstellt", "user"]
-    fields: list = [
-        "user",
-        "kontonummer",
-        "firmen_name",
-        "firmen_info",
-        "erstellt",
-        "update",
-    ]
-    readonly_fields: list = ["erstellt", "update"]
+class ProfileAdmin(ExportActionMixin, admin.ModelAdmin):
+    resource_class = ProfileRecources
+    list_display = ["firmen_name", "erstellt", "update"]

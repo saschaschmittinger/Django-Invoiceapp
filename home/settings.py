@@ -26,10 +26,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "admin_interface",
+    "colorfield",
     "profiles",
     "receivers",
     "invoices",
     "positions",
+    "import_export",
+    "home",
 ]
 
 MIDDLEWARE = [
@@ -118,6 +122,7 @@ STATIC_ROOT = "static_root"
 
 MEDIA_URL = "media/"
 MEDIA_ROOT = "media/"
+ADMIN_INTERFACE_THEME = "dark"
 
 
 # Default primary key field type
