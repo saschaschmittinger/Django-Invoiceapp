@@ -1,17 +1,48 @@
 from django.contrib import admin
-from .models import Invoice, Tag
 from import_export import resources
 from import_export.admin import ExportActionMixin
+from .models import Invoice, Tag
 
 
 class TagResource(resources.ModelResource):
     class Meta:
         model = Tag
-        fields: dict = {"id", "name"}
+        fields: dict = {
+            "id",
+            "name",
+        }
+
+
+class InvoiceResource(resources.ModelResource):
+    class Meta:
+        model = Invoice
+        fields: dict = {
+            "id",
+            "profil",
+            "empfänger",
+            "rechnungsnummer",
+            "erfüllungsdatum",
+            "rechnungsdatum",
+            "zahlungsziel",
+            "erstellt",
+            "abgeschlossen",
+        }
+        export_order = (
+            "id",
+            "profil",
+            "empfänger",
+            "rechnungsnummer",
+            "rechnungsdatum",
+            "erfüllungsdatum",
+            "erstellt",
+            "zahlungsziel",
+            "abgeschlossen",
+        )
 
 
 @admin.register(Invoice)
-class InvoiceAdmin(admin.ModelAdmin):
+class InvoiceAdmin(ExportActionMixin, admin.ModelAdmin):
+    resource_class = InvoiceResource
     list_display: list = [
         "empfänger",
         "rechnungsnummer",

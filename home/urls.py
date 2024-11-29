@@ -13,3 +13,9 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+# optische Änderung des Admin-Pannels
+
+admin.site.site_header = "SSC Admin"
+admin.site.site_title = "SSC Admin"

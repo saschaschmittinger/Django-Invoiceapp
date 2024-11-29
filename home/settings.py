@@ -33,7 +33,6 @@ INSTALLED_APPS = [
     "invoices",
     "positions",
     "import_export",
-    "home",
 ]
 
 MIDDLEWARE = [
