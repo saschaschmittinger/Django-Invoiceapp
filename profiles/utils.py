@@ -2,7 +2,6 @@ import random
 
 
 available_numbers: list = [x for x in range(10)]
-print(available_numbers)
 size: int = 26
 
 

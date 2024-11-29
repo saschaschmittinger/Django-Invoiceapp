@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.forms import ValidationError
 
 from profiles.utils import generate_konto_nummer
 
