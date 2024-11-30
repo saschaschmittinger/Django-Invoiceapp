@@ -120,8 +120,9 @@ STATICFILES_DIRS = [
 STATIC_ROOT = "static_root"
 
 MEDIA_URL = "media/"
-MEDIA_ROOT = "media/"
-ADMIN_INTERFACE_THEME = "dark"
+MEDIA_ROOT = BASE_DIR / "media"
+
+ADMIN_INTERFACE_THEME = "Django"
 
 
 # Default primary key field type

@@ -84,18 +84,6 @@ class InvoiceAdmin(ExportActionMixin, admin.ModelAdmin):
         "zahlungsziel",
         "abgeschlossen",
     ]
-    fields: list = [
-        "profil",
-        "empfänger",
-        "rechnungsnummer",
-        "erfüllungsdatum",
-        "rechnungsdatum",
-        "zahlungsziel",
-        "erstellt",
-        "abgeschlossen",
-        "tags",
-    ]
-    readonly_fields: list = ["erstellt"]
 
 
 @admin.register(Tag)

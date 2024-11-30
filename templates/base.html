@@ -5,15 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static "css/styles.css" %}">
+
+    {% block scripts %}
+    {% endblock scripts %}
     
     {% if title %}
         <title>{{ title }} </title>
     {% else %}
         <title>Sascha Schmittinger </title>    
     {% endif %}
+
 </head>
 <body>
-    
+
+    {% include "components/navbar.html" %}
+
+     <div class="container mt-3">
+        {% block content %}
+        {% endblock content %}
+     </div>
     <script src="{% static "js/flowbite.min.js" %}"></script>
 </body>
 </html>
