@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+{% for iv in qs  %}
+
+    <div class="container ml-2">
+      Rechnungsnummer:  {{ iv.rechnungsnummer }}
+    </div>
+
+{% endfor %}
+
+{% endblock content %}

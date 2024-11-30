@@ -1152,6 +1152,10 @@ input:checked + .toggle-bg {
   margin-right: -0.25rem;
 }
 
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
 .block {
   display: block;
 }
