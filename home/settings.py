@@ -20,14 +20,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "admin_interface",
+    "colorfield",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "admin_interface",
-    "colorfield",
     "profiles",
     "receivers",
     "invoices",
@@ -111,6 +111,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
+X_FRAME_OPTIONS = "SAMEORIGIN"
+SILENCED_SYSTEM_CHECKS = ["security.W019"]
+
 STATIC_URL = "static/"
 
 STATICFILES_DIRS = [
@@ -123,6 +126,7 @@ MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 ADMIN_INTERFACE_THEME = "Django"
+LOGOUT_REDIRECT_URL = "/"
 
 
 # Default primary key field type
