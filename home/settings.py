@@ -28,6 +28,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "crispy_forms",
+    "crispy_tailwind",
     "profiles",
     "receivers",
     "invoices",
@@ -127,6 +129,10 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 ADMIN_INTERFACE_THEME = "Django"
 LOGOUT_REDIRECT_URL = "/"
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+
+CRISPY_TEMPLATE_PACK = "tailwind"
 
 
 # Default primary key field type

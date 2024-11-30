@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+{% load tailwind_filters %}
+ 
+
+{% block content %}
+
+
+<nav class="bg-white border-gray-200 shadow-xl">
+    <div class="flex flex-wrap justify-between items-center w-full p-4">
+        <a href="{% url "invoices:base_view" %}" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="{% static "logo.svg" %}" class="h-6 -mr-1" alt="Flowbite Logo" />
+            <span class="self-center text-2xl font-semibold whitespace-nowrap text-[#5417D7]">SSC Consult</span>
+        </a>
+
+        {% if user.is_superuser %}
+
+        <div class="flex items-center space-x-6 rtl:space-x-reverse">
+            <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="block text-white bg-teal-600 hover:bg-teal-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm px-2 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+                + Neu
+              </button>
+            <a href="/admin" class="text-sm  bg-[#5417D7] shadow-xl hover:shadow-2xl  text-white hover:text-gray-300 px-2 py-1 rounded">Admin</a>
+        </div>
+        {% else %}
+        <div class="flex items-center space-x-6 rtl:space-x-reverse">
+            <a href="/admin" class="text-sm  bg-[#5417D7]  text-white hover:text-gray-300 px-2 py-1 rounded">login</a>
+        </div>
+
+        {% endif %}
+
+      
+    </div>
+</nav>
+
+ 
+<div id="authentication-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative px-3 py-2 w-full max-w-md max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-gray-300 rounded-lg ">
+            <!-- Modal header -->
+          
+            <!-- Modal body -->
+            <div class="p-4 md:p-5">
+              <form method="POST" class="max-w-sm mx-auto mt-8">
+                  {% csrf_token %}
+                  <div class="bg-gray-300 w-full p-8 " >
+                      {{ form|crispy }}
+                  </div>
+               
+                  <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
+                    speichern
+                </button>
+                </form>
+          
+            </div>
+        </div>
+    </div>
+</div> 
+ 
+ 
+
+
+{% endblock content %}
+ 

@@ -17,13 +17,10 @@
 
 </head>
     <body>
-
-        {% include "components/navbar.html" %}
-
-        <div class="container mt-3">
+  
             {% block content %}
             {% endblock content %}
-        </div>
+ 
         <script src="{% static "js/flowbite.min.js" %}"></script>
     </body>
 

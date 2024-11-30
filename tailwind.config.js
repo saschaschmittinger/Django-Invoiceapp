@@ -1,7 +1,11 @@
 // tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./templates/**/", "./node_modules/flowbite/**/*.js"], // updated line here!
+  content: [
+    "./templates/**/*.{html,js}",
+    "./node_modules/flowbite/**/*.js",
+    "./invoices/forms.py",
+  ],
   theme: {
     extend: {},
   },

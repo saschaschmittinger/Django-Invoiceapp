@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
+{% load tailwind_filters %}
 
 {% block content %}
+
+{% include "components/navbar.html" %}
 
 {% for iv in qs  %}
 
