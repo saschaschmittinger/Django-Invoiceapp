@@ -90,5 +90,4 @@ db.sqlite3
 
 *.md
 local-cdn
-package.json
-package-lock.json
+ 
