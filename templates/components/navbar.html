@@ -2,7 +2,6 @@
 {% load tailwind_filters %}
 
  
-
 <nav class="bg-white border-gray-200 shadow-xl">
     <div class="flex flex-wrap justify-between items-center w-full p-4">
         <a href="{% url "invoices:base_view" %}" class="flex items-center space-x-3 rtl:space-x-reverse">
@@ -13,9 +12,7 @@
         {% if user.is_superuser %}
 
         <div class="flex items-center space-x-6 rtl:space-x-reverse">
-            <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="block text-white bg-teal-600 hover:bg-teal-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm px-2 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-                + Neu
-              </button>
+            <a href="{% url "invoices:invoiceFormView" %}" class="text-sm  bg-teal-600 shadow-xl hover:shadow-2xl  text-white hover:text-gray-300 px-2 py-1 rounded">+ New</a>
             <a href="/admin" class="text-sm  bg-[#5417D7] shadow-xl hover:shadow-2xl  text-white hover:text-gray-300 px-2 py-1 rounded">Admin</a>
         </div>
         {% else %}
