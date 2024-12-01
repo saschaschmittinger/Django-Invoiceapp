@@ -47,4 +47,10 @@ class InvoiceFormView(generic.FormView):
 
 
 class SimpleTemplateView(generic.TemplateView):
+    title: str = "SSC Simple"
     template_name = "invoices/simple_template.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(SimpleTemplateView, self).get_context_data(**kwargs)
+        context.update({"title": self.title})
+        return super().get_context_data(**kwargs)
