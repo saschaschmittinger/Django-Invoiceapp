@@ -5,13 +5,29 @@
 {% block content %}
 
 
+{% if qs %}
 
-{% for iv in qs  %}
+  {% for iv in qs  %}
 
-    <div class="container ml-2">
-      Rechnungsnummer:  {{ iv.rechnungsnummer }}
+  <div class="block max-w-6xl mx-auto my-2 p-4 bg-white border border-gray-200 rounded-lg shadow-2xl hover:bg-[#FFFFCC] dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+    
+    <h5 class="mb-2 -mt-4 -mx-4 py-1 pl-2 rounded text-xl shadow-lg font-bold tracking-tight bg-[#5417D7] text-white">  {{ iv.rechnungsnummer }} - {{ iv.empfänger.name }} </h5>
+  
+    <p class="font-normal text-gray-700 dark:text-gray-400"><span class="text-[#5417D7]">Leistungserbringung:</span> {{ iv.erfüllungsdatum }} </p>
+    <p class="font-normal text-gray-700 dark:text-gray-400"><span class="text-[#5417D7]">Summe:</span> {{ iv.total_amount }}€ </p>
+      <div class="mt-2 flex gap-2">
+        <a href="#" class="py-1 px-2 rounded shadow bg-[#5417D7] text-white">details</a>
+        <a href="#" class="py-1 px-2 rounded shadow bg-teal-600 text-white">bearbeiten</a>
+      </div>
     </div>
+    
+   
+  {% endfor %}
 
-{% endfor %}
+{% else %}
+
+  <h3>Kein Rechnngen vorhanden...</h3>
+
+{% endif %}
 
 {% endblock content %}

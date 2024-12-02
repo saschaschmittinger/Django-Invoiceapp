@@ -21,6 +21,24 @@ class InvoiceForm(forms.ModelForm):
             "zahlungsziel",
         )
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["erfüllungsdatum"].label = (
+            "<span class='label-erfüllungsdatum'>Erfüllungsdatum</span>"
+        )
+        self.fields["rechnungsdatum"].label = (
+            "<span class='label-erfüllungsdatum'>Rechnungsdatum</span>"
+        )
+        self.fields["zahlungsziel"].label = (
+            "<span class='label-erfüllungsdatum'>Zahlungsziel</span>"
+        )
+        self.fields["empfänger"].label = (
+            "<span class='label-erfüllungsdatum'>Empfänger</span>"
+        )
+        self.fields["rechnungsnummer"].label = (
+            "<span class='label-erfüllungsdatum'>Rechnungsnummer</span>"
+        )
+
     def clean_rechnungsnummer(self):
         rechnungsnr = self.cleaned_data.get("rechnungsnummer")
         if len(rechnungsnr) < 10:
