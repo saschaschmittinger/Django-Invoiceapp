@@ -10,6 +10,7 @@ class Home_base_view(generic.ListView):
     title: str = "SSC Consult"
     template_name: str = "invoices/index.html"
     model = Invoice
+    paginate_by = 3
     context_object_name: str = "qs"
 
     def get_queryset(self):
