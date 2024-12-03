@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from .models import Invoice
 from profiles.models import Profile
 from .forms import InvoiceForm
 from django.views import generic
+from django.contrib import messages
 
 
 class Home_base_view(generic.ListView):
@@ -14,8 +15,11 @@ class Home_base_view(generic.ListView):
     context_object_name: str = "qs"
 
     def get_queryset(self):
-        profil = get_object_or_404(Profile, user=self.request.user)
-        return super().get_queryset().filter(profil=profil).order_by("-erstellt")
+        if self.request.user.is_authenticated:
+            profil = get_object_or_404(Profile, user=self.request.user)
+            return super().get_queryset().filter(profil=profil).order_by("-erstellt")
+        else:
+            return super().get_queryset().none()
 
     def get_context_data(self, **kwargs):
         context = super(Home_base_view, self).get_context_data(**kwargs)
@@ -47,11 +51,32 @@ class InvoiceFormView(generic.FormView):
         return super().get_context_data(**kwargs)
 
 
-class SimpleTemplateView(generic.TemplateView):
-    title: str = "SSC Simple"
+class SimpleTemplateView(generic.DetailView):
+    title: str = "SSC Detail View"
+    model = Invoice
     template_name: str = "invoices/simple_template.html"
 
     def get_context_data(self, **kwargs):
         context = super(SimpleTemplateView, self).get_context_data(**kwargs)
+        context.update({"title": self.title})
+        return super().get_context_data(**kwargs)
+
+
+class InvoiceUpdateView(generic.UpdateView):
+    title: str = "SSC Update View"
+    model = Invoice
+    form_class = InvoiceForm
+    success_url = reverse_lazy("invoices:base_view")
+    template_name: str = "invoices/update.html"
+
+    def form_valid(self, form):
+        instance = form.save()
+        messages.success(
+            self.request, f" {instance.rechnungsnummer} erfolgreich gespeichert"
+        )
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(InvoiceUpdateView, self).get_context_data(**kwargs)
         context.update({"title": self.title})
         return super().get_context_data(**kwargs)

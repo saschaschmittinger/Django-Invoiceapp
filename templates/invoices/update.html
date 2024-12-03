@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% load tailwind_filters %}
+ 
+
+{% block content %}
+
+ 
+<div class="p-5 md:p-6">
+    <form method="POST" class="max-w-sm mx-auto mt-8" >
+        {% csrf_token %}
+        <div class="bg-[#5417D7] w-full p-8 rounded shadow-xl " >
+            {{ form|crispy }}
+        </div>
+     
+     
+     
+        <button type="submit" class="text-white  bg-green-600 hover:bg-green-500 shadow-2xl focus:ring-4 focus:outline-none hover:shadow-none focus:ring-blue-300 font-medium rounded text-sm px-5 py-2.5  mt-2 w-full text-center">speichern
+      </button>
+        <button class="text-white  bg-red-600 hover:bg-red-500 shadow-2xl focus:ring-4 focus:outline-none hover:shadow-none focus:ring-blue-300 font-medium rounded text-sm px-5 py-2.5  mt-2 w-full text-center"> <a href="{% url "invoices:base_view" %}">abrechen </a>
+      </button>
+   
+      </form>
+  
+
+  </div>
+ 
+ 
+
+
+{% endblock content %}
+ 
