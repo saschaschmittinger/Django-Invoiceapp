@@ -10,4 +10,7 @@
       .label-erfüllungsdatum {
         @apply text-white
     }
+    .bg-hintergrund {
+        @apply bg-[#FFFFCC]
+    }
 }
