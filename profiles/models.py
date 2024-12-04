@@ -11,6 +11,8 @@ class Profile(models.Model):
     firmen_info = models.TextField()
     erstellt = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
+    avatar = models.ImageField(default="images/avatar.png")
+    firmen_logo = models.ImageField(default="images/no_photo.png")
 
     def __str__(self):
         return self.user.username

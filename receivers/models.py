@@ -7,6 +7,7 @@ class Receiver(models.Model):
     adresse = models.TextField()
     webseite = models.URLField(blank=True)
     erstellt = models.DateTimeField(default=datetime.now)
+    logo = models.ImageField(default="images/no_photo.png")
 
     def __str__(self):
         return str(self.name)
