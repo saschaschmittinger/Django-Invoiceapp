@@ -5,6 +5,7 @@ from profiles.models import Profile
 from .forms import InvoiceForm
 from django.views import generic
 from django.contrib import messages
+from positions.forms import PositionForm
 
 
 class Home_base_view(generic.ListView):
@@ -24,7 +25,7 @@ class Home_base_view(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super(Home_base_view, self).get_context_data(**kwargs)
         context.update({"title": self.title})
-        return super().get_context_data(**kwargs)
+        return context
 
 
 class InvoiceFormView(generic.FormView):
@@ -35,7 +36,7 @@ class InvoiceFormView(generic.FormView):
     i_instance = None
 
     def get_success_url(self):
-        return reverse("invoices:simpleTemplateView", kwargs={"pk": self.i_instance.pk})
+        return reverse("invoices:AddPositionsFormView", kwargs={"pk": self.i_instance.pk})
 
     def form_valid(self, form):
         profil = Profile.objects.get(user=self.request.user)
@@ -48,7 +49,7 @@ class InvoiceFormView(generic.FormView):
     def get_context_data(self, **kwargs):
         context = super(InvoiceFormView, self).get_context_data(**kwargs)
         context.update({"title": self.title})
-        return super().get_context_data(**kwargs)
+        return context
 
 
 class SimpleTemplateView(generic.DetailView):
@@ -59,7 +60,37 @@ class SimpleTemplateView(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super(SimpleTemplateView, self).get_context_data(**kwargs)
         context.update({"title": self.title})
-        return super().get_context_data(**kwargs)
+        return context
+
+
+class AddPositionsFormView(generic.FormView):
+    title: str = "SSC Addpositions"
+    form_class = PositionForm
+    template_name: str = "invoices/addpositions.html"
+
+    def get_success_url(self):
+        return self.request.path
+
+    def form_valid(self, form):
+        rechnung_pk = self.kwargs.get("pk")
+        rechnung_obj = Invoice.objects.get(pk=rechnung_pk)
+        instance = form.save(commit=False)
+        instance.rechnung = rechnung_obj
+        form.save()
+        messages.success(
+            self.request, f"Positionen erfolgreich hinzugefügt - {instance.leistung} "
+        )
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form"] = self.get_form()
+        context["title"] = "SSC Position hinzufügen"
+        rechnung_obj = Invoice.objects.get(pk=self.kwargs.get("pk"))
+        qs = rechnung_obj.positions
+        context["obj"] = rechnung_obj
+        context["qs"] = qs
+        return context
 
 
 class InvoiceUpdateView(generic.UpdateView):
@@ -86,4 +117,4 @@ class InvoiceUpdateView(generic.UpdateView):
     def get_context_data(self, **kwargs):
         context = super(InvoiceUpdateView, self).get_context_data(**kwargs)
         context.update({"title": self.title})
-        return super().get_context_data(**kwargs)
+        return context

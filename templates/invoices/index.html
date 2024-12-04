@@ -16,7 +16,7 @@
     <p class="font-normal text-gray-700 dark:text-gray-400"><span class="text-[#5417D7]">Leistungserbringung:</span> {{ iv.erfüllungsdatum }} </p>
     <p class="font-normal text-gray-700 dark:text-gray-400"><span class="text-[#5417D7]">Summe:</span> {{ iv.total_amount }}€ </p>
       <div class="mt-2 flex gap-2">
-        <a href="{% url "invoices:simpleTemplateView" iv.pk %}" class="py-1 px-2 rounded shadow bg-[#5417D7] text-white">details</a>
+        <a href="{% url "invoices:AddPositionsFormView" iv.pk %}" class="py-1 px-2 rounded shadow bg-[#5417D7] text-white">details</a>
         <a href="{% url "invoices:InvoiceUpdateView" iv.pk %}" class="py-1 px-2 rounded shadow bg-teal-600 text-white">bearbeiten</a>
       </div>
     </div>
