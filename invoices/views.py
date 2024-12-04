@@ -69,6 +69,13 @@ class InvoiceUpdateView(generic.UpdateView):
     success_url = reverse_lazy("invoices:base_view")
     template_name: str = "invoices/update.html"
 
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+        obj.rechnungsdatum = obj.rechnungsdatum.strftime("%Y-%m-%d")
+        obj.erfüllungsdatum = obj.erfüllungsdatum.strftime("%Y-%m-%d")
+        obj.zahlungsziel = obj.zahlungsziel.strftime("%Y-%m-%d")
+        return obj
+
     def form_valid(self, form):
         instance = form.save()
         messages.success(
