@@ -9,5 +9,7 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require("flowbite/plugin")],
+  plugins: [require("flowbite/plugin"), require("daisyui")],
+
+  safelist: ["alert-info", "alert-success", "alert-warning", "alert-error"],
 };

@@ -14,7 +14,7 @@
     <h5 class="mb-2 -mt-4 -mx-4 py-1 pl-2 rounded text-xl shadow-lg font-bold tracking-tight bg-[#5417D7] text-white"> Rechnung: {{ iv.rechnungsnummer }} - Empfänger: {{ iv.empfänger.name }} </h5>
   
     <p class="font-normal text-gray-700 dark:text-gray-400"><span class="text-[#5417D7]">Leistungserbringung:</span> {{ iv.erfüllungsdatum }} </p>
-    <p class="font-normal text-gray-700 dark:text-gray-400"><span class="text-[#5417D7]">Summe:</span> {{ iv.total_amount }}€ </p>
+    <p class="font-normal text-gray-700 dark:text-gray-400"><span class="text-[#5417d7]">Summe:</span> {{ iv.total_amount }}€ </p>
       <div class="mt-2 flex gap-2">
         <a href="{% url "invoices:AddPositionsFormView" iv.pk %}" class="py-1 px-2 rounded shadow bg-[#5417D7] text-white">details</a>
         <a href="{% url "invoices:InvoiceUpdateView" iv.pk %}" class="py-1 px-2 rounded shadow bg-teal-600 text-white">bearbeiten</a>
@@ -40,7 +40,7 @@
 
     
     <li class="{% if page_obj.has_previous %}  {% else %}hidden{% endif %}">
-      <a {% if page_obj.has_previous %}href="?page={{page_obj.previous_page_number}}"{% endif %} class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-[#FFFFCC] hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+      <a {% if page_obj.has_previous %}href="?page={{page_obj.previous_page_number}}"{% endif %} class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-[rgb(84,23,215)] hover:text-white dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
         <span class="sr-only">Vor</span>
         <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
@@ -52,13 +52,13 @@
     {% for i in paginator.page_range  %}
 
     <li>
-      <a href="?page={{i}}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-[#FFFFCC] hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white {% if page_obj.number == i %}bg-[#FFFFCC]{% endif %}"> {{ i }} </a>
+      <a href="?page={{i}}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-[rgb(84,23,215)] dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 hover:text-white {% if page_obj.number == i %}bg-[rgb(84,23,215)] text-white{% endif %}"> {{ i }} </a>
     </li>
 
     {% endfor %}
 
     <li class="{% if page_obj.has_next %}  {% else %}hidden{% endif %}">
-      <a {% if page_obj.has_next %}href="?page={{page_obj.next_page_number}}"{% endif %} class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg  hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-[#FFFFCC] dark:hover:bg-gray-700 dark:hover:text-white">
+      <a {% if page_obj.has_next %}href="?page={{page_obj.next_page_number}}"{% endif %} class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg  dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-[rgb(84,23,215)] hover:text-white dark:hover:bg-gray-700 dark:hover:text-white">
         <span class="sr-only">zurück</span>
         <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
