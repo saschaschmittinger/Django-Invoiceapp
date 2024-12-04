@@ -128,6 +128,7 @@ MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 ADMIN_INTERFACE_THEME = "Django"
+LOGIN_URL = "admin/login/?next=/admin/"
 LOGOUT_REDIRECT_URL = "/"
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
