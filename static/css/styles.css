@@ -3703,14 +3703,14 @@ details.collapse summary::-webkit-details-marker {
   background-color: rgb(84 23 215 / var(--tw-bg-opacity, 1));
 }
 
+.bg-\[\#5417d9\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(84 23 217 / var(--tw-bg-opacity, 1));
+}
+
 .bg-\[\#BA2121\] {
   --tw-bg-opacity: 1;
   background-color: rgb(186 33 33 / var(--tw-bg-opacity, 1));
-}
-
-.bg-\[rgb\(84\2c 23\2c 217\)\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(84 23 217 / var(--tw-bg-opacity, 1));
 }
 
 .bg-blue-700 {
@@ -3759,11 +3759,6 @@ details.collapse summary::-webkit-details-marker {
 
 .bg-white\/50 {
   background-color: rgb(255 255 255 / 0.5);
-}
-
-.bg-\[\#5417d9\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(84 23 217 / var(--tw-bg-opacity, 1));
 }
 
 .stroke-current {
