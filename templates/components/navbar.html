@@ -12,7 +12,11 @@
         {% if user.is_superuser %}
 
         <div class="flex items-center space-x-6 rtl:space-x-reverse">
-            <a href="{% url "invoices:invoiceFormView" %}" class="text-sm  bg-teal-600 shadow-xl hover:shadow-2xl  text-white hover:text-gray-300 px-2 py-1 rounded">+ New</a>
+            <a href="{% url "invoices:invoiceFormView" %}" class="text-sm  text-white hover:text-gray-300 px-2 py-1 rounded">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-7">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />     
+                </svg>
+            </a>
             <a href="/admin" class="text-sm  bg-[#BA2121] shadow-xl hover:shadow-2xl  text-white hover:text-gray-300 px-2 py-1 rounded">Admin</a>
         </div>
 
