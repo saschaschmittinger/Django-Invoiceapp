@@ -36,7 +36,9 @@ class InvoiceFormView(generic.FormView):
     i_instance = None
 
     def get_success_url(self):
-        return reverse("invoices:AddPositionsFormView", kwargs={"pk": self.i_instance.pk})
+        return reverse(
+            "invoices:AddPositionsFormView", kwargs={"pk": self.i_instance.pk}
+        )
 
     def form_valid(self, form):
         profil = Profile.objects.get(user=self.request.user)
@@ -118,3 +120,18 @@ class InvoiceUpdateView(generic.UpdateView):
         context = super(InvoiceUpdateView, self).get_context_data(**kwargs)
         context.update({"title": self.title})
         return context
+
+
+class CloseInvoiceView(generic.RedirectView):
+    pattern_name = "invoices:AddPositionsFormView"
+
+    def get_redirect_url(self, *args, **kwargs):
+        pk = self.kwargs.get("pk")
+        obj = Invoice.objects.get(pk=pk)
+        obj.abgeschlossen = True
+        obj.save()
+        messages.info(
+            self.request,
+            f" {obj.rechnungsnummer} wurde abgeschlossen, und kann nicht mehr bearbeitet werden",
+        )
+        return super().get_redirect_url(*args, **kwargs)
