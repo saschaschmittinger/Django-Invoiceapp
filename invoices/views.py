@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from .models import Invoice
 from profiles.models import Profile
+from positions.models import Position
 from .forms import InvoiceForm
 from django.views import generic
 from django.contrib import messages
@@ -135,3 +136,25 @@ class CloseInvoiceView(generic.RedirectView):
             f" {obj.rechnungsnummer} wurde abgeschlossen, und kann nicht mehr bearbeitet werden",
         )
         return super().get_redirect_url(*args, **kwargs)
+
+
+class InvoicePositionDeleteView(generic.DeleteView):
+    title: str = "SSC Delete View"
+    model = Position
+    template_name: str = "invoices/position_delete.html"
+
+    def get_object(self):
+        pk = self.kwargs.get("position_pk")
+        obj = Position.objects.get(pk=pk)
+        return obj
+
+    def get_success_url(self):
+        messages.info(self.request, f"gelöschte Position - {self.object.leistung}")
+        return reverse(
+            "invoices:AddPositionsFormView", kwargs={"pk": self.object.rechnung.id}
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super(InvoicePositionDeleteView, self).get_context_data(**kwargs)
+        context.update({"title": self.title})
+        return context

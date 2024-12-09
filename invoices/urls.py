@@ -5,6 +5,7 @@ from .views import (
     InvoiceUpdateView,
     AddPositionsFormView,
     CloseInvoiceView,
+    InvoicePositionDeleteView,
 )
 
 
@@ -19,5 +20,10 @@ urlpatterns = [
         "<pk>/",
         AddPositionsFormView.as_view(),
         name="AddPositionsFormView",
+    ),
+    path(
+        "<pk>/delete/<int:position_pk>/",
+        InvoicePositionDeleteView.as_view(),
+        name="InvoicePositionDeleteView",
     ),
 ]

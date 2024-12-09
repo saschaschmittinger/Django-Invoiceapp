@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<nav class="bg-[#5417D7] border-gray-200 shadow-xl text-white">
+    <div class="flex flex-wrap justify-between items-center w-full p-4">
+        <a href="{% url "invoices:base_view" %}" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="{% static "logo.svg" %}" class="h-6 -mr-1" alt="Flowbite Logo" />
+            <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">SSC Consult</span>
+        </a>
+
+        {% if user.is_superuser %}
+
+        <div class="flex items-center space-x-6 rtl:space-x-reverse">
+
+         {% if not obj.abgeschlossen %}
+
+                <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="block text-white  focus:ring-4 focus:outline-none font-medium rounded text-sm px-3 py-1.5 text-center  mt-2 ml-2" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-7 hover:text-gray-400 transition duration-300">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />     
+                </svg>
+                </button>
+                <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="block text-white  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm px-3 py-1.5 text-center  mt-2 ml-2 " type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-6 hover:text-green-400 transition duration-300 font-bold" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2S2 6.477 2 12s4.477 10 10 10ZM7 12l4 3l5-7"/></svg>
+                </button>
+        {% endif %}
+            <a href="/admin" class="text-sm  bg-[#BA2121] shadow-xl hover:shadow-2xl  text-white hover:text-gray-300 px-2 py-1 rounded">Admin</a>
+        </div>
+
+        {% else %}
+        
+        <div class="flex items-center space-x-6 rtl:space-x-reverse">
+            <a href="/admin" class="text-sm  bg-teal-600  text-white hover:text-gray-300 px-2 py-1 rounded">login</a>
+        </div>
+
+        {% endif %}  
+    </div>
+</nav>
+
+
+{% include "components/messages.html" %}
+
+<div class="bg-white w-[50%] lg:w-[30%] mx-auto lg:p-4 p-8 rounded shadow-2xl mt-16">
+    <form  method="POST">
+        {% csrf_token %}
+        <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Bist du sicher? </h3>
+        <button type="submit" class="py-2.5 px-5 ms-3 text-sm font-medium text-white focus:outline-none bg-green-600 rounded-lg border border-green-600 hover:bg-green-500  focus:z-10 focus:ring-4 transition duration-300">Ja, Position löschen</button>
+   
+    </form>
+</div>
+
+{% endblock content %}
